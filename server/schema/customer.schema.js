@@ -7,9 +7,20 @@ exports.customerTypeDefs = gql`
         maxQty: Int
     }
 
+    input OptionsInput {
+        qty: Int
+        color: String
+        maxQty: Int
+    }
+
     type Cart {
         productId: String
         options: Options
+    }
+
+    input CartInput {
+        productId: String
+        options: OptionsInput
     }
 
     type Customer {
@@ -36,7 +47,7 @@ exports.customerTypeDefs = gql`
         phoneNumber: String
         addresses: String
         birthday: String
-        cart: Cart
+        cart: CartInput
         wishlist: [String]
         reviews: [String]
         orders: [String]

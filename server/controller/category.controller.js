@@ -3,8 +3,12 @@ const Category = require('../model/category.model')
 exports.create = (data) => {
     return new Promise((resolve,reject)=>{
         var newDoc = new Category(data);
+        console.log(data);
         newDoc.save((err,doc)=>{
-            if(err) reject(err);
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
             else resolve(doc);
         })
     })
