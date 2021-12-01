@@ -17,10 +17,6 @@ const Category = {
       type: ObjectId, 
       ref: 'Category'
    },
-   childCate: [{
-      type: ObjectId, 
-      ref: 'Category'
-   }],
    mainCate: {
       type: Boolean,
       default: false

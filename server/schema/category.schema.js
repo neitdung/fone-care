@@ -7,7 +7,6 @@ exports.categoryTypeDefs = gql`
         description: String
         image: String
         parentCate: String
-        childCate: [String]
         mainCate: Boolean
     }
 
@@ -16,7 +15,6 @@ exports.categoryTypeDefs = gql`
         description: String
         image: String
         parentCate: String
-        childCate: String
         mainCate: Boolean
     }
 
