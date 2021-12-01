@@ -11,5 +11,5 @@ exports.resolvers = [
   customerResolvers,
   officerResolvers,
   orderResolvers,
-  productResolvers,
+  // productResolvers,
 ];

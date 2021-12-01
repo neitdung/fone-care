@@ -76,7 +76,7 @@ exports.orderTypeDefs = gql`
         color: String
         inStock: Boolean
         qty: Int
-        category: Category
+        category: String
         status: String
         isDelete: Boolean
     }
