@@ -3,20 +3,18 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const db = require('./config/db');
 const { ApolloServer } = require('apollo-server-express');
-const { officerResolvers } = require('./resolver/officer.resolver');
-const { officerTypeDefs } = require('./schema/officer.schema');
+const { resolvers } = require('./resolver');
+const { typeDefs } = require('./schema');
 
 // require('mongoose').set('debug', true);
 db.connectToDb();
-
-
 
 const app = express();
 async function startServer() {
    const server = new ApolloServer(
       { 
-         typeDefs: [officerTypeDefs],
-         resolvers: [officerResolvers]
+         typeDefs: typeDefs,
+         resolvers: resolvers
       }
    );
    await server.start();

@@ -8,7 +8,7 @@ exports.brandTypeDefs = gql`
         bannerImage: String
     }
 
-    input BrandInput{
+    input BrandInput {
         name: String
         description: String
         bannerImage: String

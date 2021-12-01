@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { ObjectId } = Schema.Types;
 
 const Product = {
   sku: {
@@ -87,13 +88,14 @@ const Product = {
     type: ObjectId,
     ref: 'Category'
   },
-  isDeleted: {
+  isDelete: {
       type: Boolean,
       default: false
   }
 };
 
 const ProductSchema = new Schema(Product, { timestamps: true });
+
 ProductSchema.index({'$**': 'text'});
 
 module.exports = mongoose.model("Product", ProductSchema);
