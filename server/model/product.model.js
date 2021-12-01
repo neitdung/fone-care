@@ -7,11 +7,6 @@ const Product = {
     required: true,
     unique: true,
   },
-  IMEI: {
-    type: String,
-    required: true,
-    unique: true
-  },
   active: {
     type: Boolean,
     default: true
@@ -92,11 +87,7 @@ const Product = {
     type: ObjectId,
     ref: 'Category'
   },
-  status: {
-    type: String,
-    default: 'Inventory'
-  },
-  isDelete: {
+  isDeleted: {
       type: Boolean,
       default: false
   }

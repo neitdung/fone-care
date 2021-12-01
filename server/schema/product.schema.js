@@ -25,13 +25,12 @@ exports.productTypeDefs = gql`
 
     type Product{
         sku: String
-        IMEI: String
         active: Boolean
         name: String
         description: String
         price: Number
         discount_price: Number
-        descriptopn_short: String
+        description_short: String
         color: String
         inStock: Boolean
         qty: Number
@@ -43,13 +42,12 @@ exports.productTypeDefs = gql`
 
     input ProductInput{
         sku: String
-        IMEI: String
         active: Boolean
         name: String
         description: String
         price: Number
         discount_price: Number
-        descriptopn_short: String
+        description_short: String
         color: String
         inStock: Boolean
         qty: Number

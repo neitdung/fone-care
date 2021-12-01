@@ -7,8 +7,8 @@ exports.categoryTypeDefs = gql`
         description: String
         image: String
         parentCate: String
-        childCate: String
-        mainCate: String
+        childCate: [String]
+        mainCate: Boolean
     }
 
     input CategoryInput{
@@ -17,7 +17,7 @@ exports.categoryTypeDefs = gql`
         image: String
         parentCate: String
         childCate: String
-        mainCate: String
+        mainCate: Boolean
     }
 
     type Query{
