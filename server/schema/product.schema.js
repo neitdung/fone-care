@@ -23,17 +23,33 @@ exports.productTypeDefs = gql`
         image_url: String
     }
 
+    input DetailInput {
+        brand: Brand
+        cpu: String
+        ram: String
+        screen_size: String
+        hard_drive: String
+        screen_relolution: String
+        sound: String
+        wireless_connect: String
+        pin: String
+        os: String
+        weight: String
+        material: String
+        image_url: String
+    }
+
     type Product{
         sku: String
         active: Boolean
         name: String
         description: String
-        price: Number
-        discount_price: Number
+        price: Float
+        discount_price: Float
         description_short: String
         color: String
         inStock: Boolean
-        qty: Number
+        qty: Int
         detail: Detail
         category: Category
         status: String
@@ -45,22 +61,22 @@ exports.productTypeDefs = gql`
         active: Boolean
         name: String
         description: String
-        price: Number
-        discount_price: Number
+        price: Float
+        discount_price: Float
         description_short: String
         color: String
         inStock: Boolean
-        qty: Number
-        detail: Detail
-        category: Category
+        qty: Int
+        detail: DetailInput
+        category: String
         status: String
         isDelete: Boolean
     }
 
     type Query{
         getAllProducts: [Product]
-        getProduct(sku): Product
-        searchProducts(keyWord): [Product]
+        getProduct(sku: String): Product
+        searchProduct(keyWord: String): [Product]
     }
 
     type Mutation{

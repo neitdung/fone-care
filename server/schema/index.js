@@ -11,5 +11,5 @@ exports.typeDefs = [
   customerTypeDefs,
   officerTypeDefs,
   orderTypeDefs,
-  productTypeDefs,
+  productTypeDefs
 ];

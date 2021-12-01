@@ -19,7 +19,7 @@ exports.categoryTypeDefs = gql`
     }
 
     type Query{
-        getAllCategorys: [Category]
+        getAllCategories: [Category]
         getCategory(id: ID): Category
     }
 

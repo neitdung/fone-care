@@ -1,15 +1,15 @@
 const controller = require('../controller/category.controller')
 exports.categoryResolvers = {
     Query: {
-        getAllCaterorys: (root) => {
+        getAllCategories: (root) => {
             return controller.getAll()
         },
-        getCaterory: (root, {id} )=>{
+        getCategory: (root, {id} )=>{
             return controller.get(id)
         }
     },
     Mutation:{
-        createCaterory: (root, { input }) => {
+        createCategory: (root, { input }) => {
             return controller.create(input)
         },
         updateCategory: (root, { input }) => {

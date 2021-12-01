@@ -9,11 +9,19 @@ exports.orderTypeDefs = gql`
         address: String
     }
 
+    input ContactInput {
+        email: String
+        name: String
+        telephone: String
+        detail: String
+        address: String
+    }
+
     type Order{
         id: ID
-        total: Number
+        total: Float
         products: [Product]
-        customer: Customer
+        customer: String
         contact: Contact
         status: String
     }
@@ -45,13 +53,29 @@ exports.orderTypeDefs = gql`
         active: Boolean
         name: String
         description: String
-        price: Number
-        discount_price: Number
+        price: Float
+        discount_price: Float
         description_short: String
         color: String
         inStock: Boolean
-        qty: Number
+        qty: Int
         detail: Detail
+        category: Category
+        status: String
+        isDelete: Boolean
+    }
+
+    input ProductInput{
+        sku: String
+        active: Boolean
+        name: String
+        description: String
+        price: Float
+        discount_price: Float
+        description_short: String
+        color: String
+        inStock: Boolean
+        qty: Int
         category: Category
         status: String
         isDelete: Boolean
@@ -59,10 +83,10 @@ exports.orderTypeDefs = gql`
 
     input OrderInput{
         id: ID
-        total: Number
-        products: [Product]
-        customer: Customer
-        contact: Contact
+        total: Float
+        products: [ProductInput]
+        customer: String
+        contact: ContactInput
         status: String
     }
 

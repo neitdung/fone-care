@@ -2,9 +2,9 @@ const { gql } = require('apollo-server-express');
 
 exports.customerTypeDefs = gql`
     type Options {
-        qty: Number
+        qty: Int
         color: String
-        maxQty: Number
+        maxQty: Int
     }
 
     type Cart {
@@ -19,7 +19,7 @@ exports.customerTypeDefs = gql`
         password: String
         phoneNumber: String
         addresses: String
-        birthday: Date
+        birthday: String
         cart: Cart
         wishlist: [String]
         reviews: [String]
@@ -31,12 +31,11 @@ exports.customerTypeDefs = gql`
         name: String
         description: String
         bannerImage: String
-        name: String
         email: String
         password: String
         phoneNumber: String
         addresses: String
-        birthday: Date
+        birthday: String
         cart: Cart
         wishlist: [String]
         reviews: [String]
