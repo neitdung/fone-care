@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useEffect} from "react";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { Drawer, Layout, Button } from 'antd';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Layout.Header>
+          
+        </Layout.Header>
+        <Layout.Content>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout.Content>
+        <Layout.Footer>
+
+        </Layout.Footer>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
