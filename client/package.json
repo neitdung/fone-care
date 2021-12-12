@@ -9,9 +9,8 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.17.2",
-    "customize-cra": "^1.0.0",
+    "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-app-rewire-workbox": "^2.0.1",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.0.2",
@@ -23,7 +22,12 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "webpack serve --mode=development",
+    "prod": "NODE_ENV=production webpack --mode=production",
+    "serve": "npm run prod && serve -s dist",
+    "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "eslintConfig": {
     "extends": [
@@ -45,8 +49,27 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
     "autoprefixer": "^9.8.8",
+    "copy-webpack-plugin": "^10.1.0",
+    "css-loader": "^5.2.7",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.2",
     "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "serve": "^13.0.2",
+    "style-loader": "^2.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^3.11.1",
+    "workbox-cacheable-response": "^6.4.2",
+    "workbox-core": "^6.4.2",
+    "workbox-expiration": "^6.4.2",
+    "workbox-routing": "^6.4.2",
+    "workbox-strategies": "^6.4.2",
+    "workbox-window": "^6.4.2"
   }
 }
