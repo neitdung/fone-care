@@ -1,12 +1,17 @@
 const { gql } = require('apollo-server-express');
 
 exports.categoryTypeDefs = gql`
+    type ParentCateData {
+        name: String,
+        slug: String
+    }
+
     type Category {
         id: ID
         name: String
         description: String
         image: String
-        parentCate: String
+        parentCate: ParentCateData
         mainCate: Boolean
     }
 
