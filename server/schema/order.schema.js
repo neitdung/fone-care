@@ -26,14 +26,7 @@ exports.orderTypeDefs = gql`
         status: String
     }
 
-    type Brand {
-        name: String
-        description: String
-        bannerImage: String
-    }
-
     type Detail {
-        brand: Brand
         cpu: String
         ram: String
         screen_size: String

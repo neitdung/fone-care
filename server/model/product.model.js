@@ -43,10 +43,6 @@ const Product = {
     min: 0
    },
   detail: {
-    brand: {
-        type: ObjectId,
-        ref: 'Brand'
-     },
     cpu: {
         type: String
     },

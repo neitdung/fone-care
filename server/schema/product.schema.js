@@ -1,14 +1,7 @@
 const { gql } = require("apollo-server-express");
 
 exports.productTypeDefs = gql`
-  type Brand {
-    name: String
-    description: String
-    bannerImage: String
-  }
-
   type Detail {
-    brand: Brand
     cpu: String
     ram: String
     screen_size: String
@@ -24,7 +17,6 @@ exports.productTypeDefs = gql`
   }
 
   input DetailInput {
-    brand: String
     cpu: String
     ram: String
     screen_size: String
@@ -62,10 +54,6 @@ exports.productTypeDefs = gql`
     name: String
   }
 
-  input CategoryInput {
-    id: ID
-  }
-
   input ProductInput {
     sku: String
     active: Boolean
@@ -78,7 +66,7 @@ exports.productTypeDefs = gql`
     inStock: Boolean
     qty: Int
     detail: DetailInput
-    category: CategoryInput
+    category: String
     status: String
     isDelete: Boolean
   }
