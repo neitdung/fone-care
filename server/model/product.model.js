@@ -30,18 +30,21 @@ const Product = {
   descriptopn_short: {
     type: String
   },
-  color: {
-      type: String
-  },
+  color: [ 
+    {
+      name: String,
+      hexCode: String
+    }
+  ],
   inStock: {
     type: Boolean,
     default: true
    },
-   qty: {
-    type: Number,
-    require: true,
-    min: 0
-   },
+  qty: {
+  type: Number,
+  require: true,
+  min: 0
+  },
   detail: {
     cpu: {
         type: String

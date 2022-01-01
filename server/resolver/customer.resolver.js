@@ -15,5 +15,8 @@ exports.customerResolvers = {
         updateCustomer: (root, { input }) => {
             return controller.update(input)
         },
+        login: (root, {input}) => {
+            return controller.login(input);
+        }
     }
 };
