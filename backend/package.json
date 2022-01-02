@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.17.2",
+    "jwt-decode": "^3.1.2",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
@@ -19,8 +20,8 @@
     "workbox-webpack-plugin": "^6.4.2"
   },
   "scripts": {
-    "start": "set PORT=6000 && react-app-rewired start",
-    "build": "set PORT=6000 && react-app-rewired build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "webpack-dev-server": "webpack-dev-server",
