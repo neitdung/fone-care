@@ -5,7 +5,6 @@ import {
   Route,
   Routes,
   Link,
-  useNavigate,
 } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
@@ -63,14 +62,14 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <Layout>
+        <Layout style={ {minHeight: '100vh' } }>
           <Sider
-            trigger={null}
             collapsible
             collapsed={collapsed}
-            className="overflow-auto h-screen fixed left-0"
+            onCollapse={toggle}
+            className="overflow-auto min-h-screen fixed left-0"
           >
-            <div className="h-8 m-4 bg-gray-700" />
+            <div style={ {minHeight: '32px' , margin: 16, backgroundColor: 'darkslategray'} }/>
             <Menu
               theme="dark"
               mode="inline"
@@ -119,18 +118,7 @@ function App() {
           </Sider>
           <Layout
             className="bg-white"
-            style={{ marginLeft: collapsed ? 80 : 200 }}
           >
-            <Header className="bg-white p-0">
-              {React.createElement(
-                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                {
-                  className:
-                    "px-6 text-lg cursor-pointer leading-10 duration-300 hover:text-blue-500",
-                  onClick: toggle,
-                }
-              )}
-            </Header>
             <Content className="bg-white mx-4 my-6 p-6 min-h-screen">
               <Routes>
                 <Route path="/login" element={<LoginPage />} />

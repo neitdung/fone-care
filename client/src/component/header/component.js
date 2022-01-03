@@ -23,6 +23,7 @@ const HeaderComponent = ({
   logoutCustomer,
 }) => {
   let navigate = useNavigate();
+   useState([])
   const [currentCate, setCurrentCate] = useState("");
   const handleClick = (e) => {
     setCurrentCate(e.key);
