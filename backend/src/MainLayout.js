@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
     MenuUnfoldOutlined,
@@ -14,6 +14,8 @@ import {
   } from "@ant-design/icons";
 import { logout } from "./ultis/auth";
 import { ROLE_MANAGER, ROLE_COMMON, ROLE_OFFICER } from "./ultis/roles";
+import { getToken } from "./ultis/auth";
+
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const MainLayout = () => {
@@ -21,6 +23,13 @@ const MainLayout = () => {
   const toggle = () => {
     setCollapsed(!collapsed);
   };
+  let navigate = useNavigate();
+  useEffect(()=> {
+    if (!getToken()) {
+      navigate("/login");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Layout style={ {minHeight: '100vh' } }>
     <Sider
@@ -36,7 +45,7 @@ const MainLayout = () => {
         defaultSelectedKeys={["dashboard"]}
       >
         <Menu.Item key="dashboard" icon={<AppstoreOutlined />}>
-          <Link to={`/dashboard`}>Dashboard</Link>
+          <Link to={`/`}>Dashboard</Link>
         </Menu.Item>
         <SubMenu
           key="sales"
@@ -70,7 +79,10 @@ const MainLayout = () => {
         <Menu.Item
           key="logout"
           icon={<LeftCircleOutlined />}
-          onClick={(e) => logout()}
+          onClick={(e) => {
+            logout();
+            navigate("/login");
+          }}
         >
           Logout
         </Menu.Item>

@@ -25,7 +25,7 @@ const LoginPage = () => {
     if (getToken()) {
       let role =getRole();
       if (role) {
-        role === ROLE_SUPPLIER ? navigate("/imei") : navigate("/dashboard");
+        role === ROLE_SUPPLIER ? navigate("/imei") : navigate("/");
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +38,7 @@ const LoginPage = () => {
       saveToken(data.loginOfficer.token);
       let role =getRole();
       if (role) {
-        role === ROLE_SUPPLIER ? navigate("/imei") : navigate("/dashboard");
+        role === ROLE_SUPPLIER ? navigate("/imei") : navigate("/");
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

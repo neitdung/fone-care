@@ -37,7 +37,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
@@ -45,7 +44,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<MainLayout />}>
             <Route
-              path="/dashboard"
+              path="/"
               element={
                 <RoleRoute role={ROLE_OFFICER}>
                   <Dashboard />
