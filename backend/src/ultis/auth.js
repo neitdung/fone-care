@@ -2,13 +2,19 @@ import jwt_decode from "jwt-decode";
 
 export const getToken = () => {
   const tokenString = localStorage.getItem("token");
-  const decoded = jwt_decode(tokenString);
-  const currentTime = Date.now() / 1000;
-  if (decoded.exp < currentTime) {
+  if (!tokenString) {
     localStorage.removeItem("token");
     return false;
+  } else {
+    const decoded = jwt_decode(tokenString);
+
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+      localStorage.removeItem("token");
+      return false;
+    }
+    return tokenString;
   }
-  return tokenString;
 };
 
 export const saveToken = (token) => {

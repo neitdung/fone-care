@@ -17,12 +17,21 @@ exports.officerTypeDefs = gql`
     }
 
     input OfficerInput{
-        id: ID
         username: String
         password: String
         fullname: String
         role: Role
         email: String
+    }
+
+    input LoginOfficerInput {
+        username: String
+        password: String
+    }
+
+    type Token {
+        token: String,
+        error: Boolean
     }
 
     type Query{
@@ -32,5 +41,6 @@ exports.officerTypeDefs = gql`
 
     type Mutation{
         createOfficer(input:OfficerInput): Officer
+        loginOfficer(input:LoginOfficerInput): Token
     }
 `;

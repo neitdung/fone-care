@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
     MenuUnfoldOutlined,
@@ -12,10 +12,15 @@ import {
     ProfileOutlined,
     LeftCircleOutlined,
   } from "@ant-design/icons";
-
+import { logout } from "./ultis/auth";
+import { ROLE_MANAGER, ROLE_COMMON, ROLE_OFFICER } from "./ultis/roles";
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const MainLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const toggle = () => {
+    setCollapsed(!collapsed);
+  };
   return (
     <Layout style={ {minHeight: '100vh' } }>
     <Sider
@@ -75,6 +80,7 @@ const MainLayout = () => {
       className="bg-white"
     >
       <Content className="bg-white mx-4 my-6 p-6 min-h-screen">
+        <Outlet />
       </Content>
         </Layout>
     </Layout>

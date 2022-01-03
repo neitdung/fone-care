@@ -1,12 +1,52 @@
 const Officer = require('../model/officer.model')
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const FONE_KEY = process.env.FONE_KEY;
+const { AuthenticationError, None } = require('apollo-server-express');
+  
 exports.create = (data) => {
     return new Promise((resolve,reject)=>{
         var newDoc = new Officer(data);
-        newDoc.save((err,doc)=>{
-            if(err) reject(err);
-            else resolve(doc);
-        })
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newDoc.password, salt, (err, hash) => {
+                newDoc.password = hash;
+                newDoc
+                .save((err,doc)=>{
+                    if(err) reject(err);
+                    else resolve(doc);
+                })
+            });
+        });
+    })
+}
+
+exports.login = (data) => {
+    return new Promise((resolve,reject)=>{
+        Officer.findOne({ username: data.username }).then(doc => {
+            if (!doc) {
+                throw new AuthenticationError('Invalid username or password');
+            }
+      
+            bcrypt.compare(data.password, doc.password).then(isMatch => {
+               if (isMatch) {
+                  const payload = {
+                     id: doc._id,
+                     role: doc.role
+                  };
+                  jwt.sign(payload, FONE_KEY, { expiresIn: 86400 }, (err, token) => {
+                     if (err) {
+                        throw new None('Error compare password');
+                     }
+                     resolve({
+                        error: false,
+                        token: token
+                     });
+                  });
+               } else {
+                    throw new AuthenticationError('Invalid username or password');
+               }
+            });
+         });
     })
 }
 

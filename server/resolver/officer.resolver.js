@@ -11,6 +11,9 @@ exports.officerResolvers = {
     Mutation:{
         createOfficer: (root, { input }) => {
             return controller.create(input)
+        },
+        loginOfficer: (root, { input }) => {
+            return controller.login(input)
         }
     }
 };

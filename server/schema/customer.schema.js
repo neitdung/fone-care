@@ -58,8 +58,16 @@ exports.customerTypeDefs = gql`
         getCustomer(id:ID): Customer
     }
 
+    
+    input LoginCustomerInput{
+        email: String
+        password: String
+    }
+
     type Mutation{
         createCustomer(input:CustomerInput): Customer
         updateCustomer(input:CustomerInput): Customer
+        loginCustomer(input:LoginCustomerInput): Customer
+
     }
 `;
