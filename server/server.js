@@ -15,6 +15,9 @@ async function serverStart() {
   const server = new ApolloServer({
     resolvers: resolvers,
     typeDefs: typeDefs,
+    formatError: (err) => {
+      return err;
+    },
   });
   await server.start();
   console.log(`gql path is ${server.graphqlPath}`);

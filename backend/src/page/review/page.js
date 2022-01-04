@@ -3,16 +3,16 @@ import { PageHeader } from "antd";
 
 import { Outlet } from "react-router-dom";
 
-const Dashboard = () => {
+const ReviewPage = () => {
   return (
     <div>
       <PageHeader
         className="site-page-header"
-        title="Dashboard"
+        title="Review"
       />
       <Outlet />
     </div>
   );
 };
 
-export default Dashboard;
+export default ReviewPage;

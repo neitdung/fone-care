@@ -12,7 +12,7 @@ exports.create = (data) => {
                 newDoc.password = hash;
                 newDoc
                 .save((err,doc)=>{
-                    if(err) reject(err);
+                    if(err) reject({error:true, message:"Create officer failed"});
                     else resolve(doc);
                 })
             });
@@ -24,7 +24,7 @@ exports.login = (data) => {
     return new Promise((resolve,reject)=>{
         Officer.findOne({ username: data.username }).then(doc => {
             if (!doc) {
-                throw new AuthenticationError('Invalid username or password');
+                reject({error:true, message:"Invalid username or password"});
             }
       
             bcrypt.compare(data.password, doc.password).then(isMatch => {
@@ -35,15 +35,15 @@ exports.login = (data) => {
                   };
                   jwt.sign(payload, FONE_KEY, { expiresIn: 86400 }, (err, token) => {
                      if (err) {
-                        throw new None('Error compare password');
-                     }
+                        reject({error:true, message:"Invalid username or password"});
+                    }
                      resolve({
                         error: false,
                         token: token
                      });
                   });
                } else {
-                    throw new AuthenticationError('Invalid username or password');
+                    reject({error:true, message:"Invalid username or password"});
                }
             });
          });
@@ -67,7 +67,7 @@ exports.update = async (data) => {
 exports.getAll = async () => {
     return new Promise((resolve,reject)=>{
         Officer.find({}, (err,docs)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Get officers failed"});
             else resolve(docs);
         })
     })
@@ -76,7 +76,7 @@ exports.getAll = async () => {
 exports.get = async (id) => {
     return new Promise((resolve,reject)=>{
         Officer.find({ _id: id}, (err,doc)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Get officer failed"});
             else resolve(doc);
         })
     })

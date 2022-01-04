@@ -68,6 +68,5 @@ exports.customerTypeDefs = gql`
         createCustomer(input:CustomerInput): Customer
         updateCustomer(input:CustomerInput): Customer
         loginCustomer(input:LoginCustomerInput): Customer
-
     }
 `;
