@@ -7,14 +7,21 @@ import Header from './component/header';
 import Footer from './component/footer';
 import ErrorPage from './page/error';
 import HomePage from './page/home';
+import CartPage from './page/cart';
+import ProductPage from './page/product';
+import CheckoutPage from './page/checkout';
+import CheckoutSuccessPage from './page/checkout/success';
+import './component/style.scss';
+import './component/bootstrap.min.css';
+// import './component/font-awesome.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
-        {/* <Layout.Header>
+        <Layout.Header>
           <Header />
-        </Layout.Header> */}
+        </Layout.Header>
         <Layout.Content>
           <Routes>
             {/* <Route path="customer" element={<Dashboard />}>
@@ -33,6 +40,10 @@ function App() {
             <Route path="checkout" element={<Dashboard />}>
               <Route path="success" element={<Dashboard />} />
             </Route> */}
+             <Route path="/cart" element={<CartPage />} />
+             <Route path="/product" element={<ProductPage />} />
+             <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
+             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

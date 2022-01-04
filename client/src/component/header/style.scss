@@ -1,0 +1,14 @@
+.header {
+    max-height: 100px;
+}
+
+.ant-layout-header {
+    background: unset;
+    padding: 0;
+    height: 225px;
+    line-height: 10px;
+}
+
+.fa-shopping-basket:before {
+    content: "\f291";
+}
