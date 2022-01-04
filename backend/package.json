@@ -27,7 +27,7 @@
     "eject": "react-app-rewired eject",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack serve --mode=development --port 6060",
-    "prod": "NODE_ENV=production webpack --mode=production --port 7000",
+    "prod": "NODE_ENV=production webpack --mode=production",
     "serve": "npm run prod && serve -s dist",
     "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
