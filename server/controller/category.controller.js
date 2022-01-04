@@ -5,15 +5,16 @@ exports.create = (data) => {
         var newDoc = new Category(data);
         newDoc.save((err,doc)=>{
             if(err) {
-                console.log(err);
-                reject(err);
+                reject({error:true, message:"Create category failed"});
             }
-            else resolve(doc);
+            Category.populate(doc, {path:"parentCate"}, function(err, doc) { resolve(doc) });
         })
     })
 }
 
 exports.update = async (data) => {
+    return new Promise((resolve,reject)=>{
+
     Category.findOneAndUpdate(
         { _id: data._id },
         { $set: data },
@@ -21,27 +22,32 @@ exports.update = async (data) => {
     )
     .populate("parentCate")
     .then(doc => {
-        return doc
+        resolve(doc)
     })
-    .catch( err => {
-        return ({ error: true, message: "Can not update Category"})
+    .catch(err => {
+        reject ({ error: true, message: "Can not update Category"})
+    })
     })
 }
 
 exports.getAll = async () => {
     return new Promise((resolve,reject)=>{
-        Category.find({}, (err,docs)=>{
-            if(err) reject(err);
+        Category.find({})
+        .populate("parentCate")
+        .exec(function (err, docs) {
+            if(err) reject({error:true, message:"Get officers failed"});
             else resolve(docs);
-        })
+        });
     })
 }
 
 exports.get = async (id) => {
     return new Promise((resolve,reject)=>{
-        Category.find({ _id: id}, (err,doc)=>{
-            if(err) reject(err);
+        Category.findById(id)
+        .populate("parentCate")
+        .exec(function (err, doc) {
+            if(err) reject({error:true, message:"Get officer failed"});
             else resolve(doc);
-        })
+        });
     })
 }

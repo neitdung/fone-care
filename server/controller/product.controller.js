@@ -4,7 +4,7 @@ exports.create = (data) => {
     return new Promise((resolve,reject)=>{
         var newDoc = new Product(data);
         newDoc.save((err,doc)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Create product failed"});
             else resolve(doc);
         })
     })
@@ -27,7 +27,7 @@ exports.update = async (data) => {
 exports.getAll = async () => {
     return new Promise((resolve,reject)=>{
         Product.find({}, (err,docs)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Get products failed"});
             else resolve(docs);
         })
     })
@@ -36,7 +36,7 @@ exports.getAll = async () => {
 exports.get = async (sku) => {
     return new Promise((resolve,reject)=>{
         Product.find({ sku: sku}, (err,doc)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Get product failed"});
             else resolve(doc);
         })
     })
@@ -46,7 +46,7 @@ exports.search = async (keyWord) => {
     return new Promise((resolve, reject) => {
         Product.find({$text: {$search: keyWord}})
             .exec(function(err, docs) {
-                if(err) reject(err);
+                if(err) reject({error:true, message:"Search product failed"});
                 else resolve(docs);
             });
     })

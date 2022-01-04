@@ -2,7 +2,8 @@ const { gql } = require('apollo-server-express');
 
 exports.categoryTypeDefs = gql`
     type ParentCateData {
-        name: String,
+        id: ID
+        name: String
         slug: String
     }
 
@@ -10,6 +11,7 @@ exports.categoryTypeDefs = gql`
         id: ID
         name: String
         description: String
+        slug: String
         image: String
         parentCate: ParentCateData
         mainCate: Boolean

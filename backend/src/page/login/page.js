@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { LOGIN_OFFICER } from "../../query/officer.query";
 import { useMutation } from "@apollo/client";
-import { Row, Col, Typography, Form, Input, Button, message, Skeleton } from "antd";
+import { Row, Col, Typography, Form, Input, Button, Skeleton } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { saveToken, getToken, getRole } from "../../ultis/auth";
@@ -21,37 +21,37 @@ const buttonLayout = {
 };
 const LoginPage = () => {
   let navigate = useNavigate();
-  useEffect(()=> {
+  useEffect(() => {
     if (getToken()) {
-      let role =getRole();
+      let role = getRole();
       if (role) {
         role === ROLE_SUPPLIER ? navigate("/imei") : navigate("/");
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [loginOfficer, { data, loading, error }] = useMutation(LOGIN_OFFICER);
 
-  useEffect(()=> {
-    if (error) message(`Submission error! ${error.message}`);
-    if (data) {
+  useEffect(() => {
+    if (error) {
+      console.log(error.message);
+    } else if (data) {
       saveToken(data.loginOfficer.token);
-      let role =getRole();
+      let role = getRole();
       if (role) {
         role === ROLE_SUPPLIER ? navigate("/imei") : navigate("/");
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
-
 
   const handleSubmit = (values) => {
     loginOfficer({
       variables: {
-        input: values
+        input: values,
       },
     });
- };
+  };
   return (
     <Skeleton loading={loading}>
       <Row className="main-container">
@@ -94,7 +94,7 @@ const LoginPage = () => {
           </Form>
         </Col>
       </Row>
-      </Skeleton>
+    </Skeleton>
   );
 };
 

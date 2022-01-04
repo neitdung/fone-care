@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  ContactsOutlined,
   UserOutlined,
-  LineChartOutlined,
+  BarcodeOutlined,
   SolutionOutlined,
   DollarCircleOutlined,
   AppstoreOutlined,
@@ -19,7 +18,7 @@ import { grantPermission } from "./ultis/permission";
 const { Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const MainLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [role, setRole] = useState(ROLE_SUPPLIER);
 
   const toggle = () => {
@@ -80,7 +79,10 @@ const MainLayout = () => {
               <Link to={`/officer`}>Officer</Link>
             </Menu.Item>
           ) : null}
-          <Menu.Item key="my-account" icon={<SolutionOutlined />}>
+          <Menu.Item key="imei" icon={<BarcodeOutlined />}>
+            <Link to={`/imei`}>IMEI Tracking</Link>
+          </Menu.Item>
+          <Menu.Item key="my-account" icon={<ContactsOutlined />}>
             <Link to={`/my-account`}>My Account</Link>
           </Menu.Item>
           <Menu.Item

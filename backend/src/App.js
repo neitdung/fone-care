@@ -2,12 +2,22 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { ROLE_MANAGER, ROLE_COMMON, ROLE_OFFICER } from "./ultis/roles";
-import MainLayout from "./MainLayout";
-import RoleRoute from "./ultis/role-route";
+import ManagerRoute from "./route/manager";
+import OfficerRoute from "./route/officer";
 import LoginPage from "./page/login";
 import Dashboard from "./page/dashboard";
+import CustomerPage from "./page/customer";
+import ReviewPage from "./page/review";
+import CategoryPage from "./page/category";
+import IMEIPage from "./page/imei";
+import MyAccount from "./page/my-account";
+import OfficerPage from "./page/officer";
+import OrderPage from "./page/order";
+import ProductPage from "./page/product";
 
+import CategoryList from "./component/category/list";
+
+import MainLayout from "./MainLayout";
 import {
   ApolloClient,
   InMemoryCache,
@@ -41,144 +51,47 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<MainLayout />}>
-            <Route
-              path="/"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/order/new"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/order/:id"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/order"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/category/new"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/category/:id"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/category"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/product/new"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/product/:id"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/product"
-              element={
-                <RoleRoute role={ROLE_OFFICER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/imei/new"
-              element={
-                <RoleRoute role={ROLE_COMMON}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/imei/:imei"
-              element={
-                <RoleRoute role={ROLE_COMMON}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/imei"
-              element={
-                <RoleRoute role={ROLE_COMMON}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/officer/new"
-              element={
-                <RoleRoute role={ROLE_MANAGER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/officer/:id"
-              element={
-                <RoleRoute role={ROLE_MANAGER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/officer"
-              element={
-                <RoleRoute role={ROLE_MANAGER}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
-            <Route
-              path="/my-account"
-              element={
-                <RoleRoute role={ROLE_COMMON}>
-                  <Dashboard />
-                </RoleRoute>
-              }
-            />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="/" element={<MainLayout />}> 
+            <Route path="officer" element={<ManagerRoute />}>
+              <Route path="new" element={<Dashboard />} />
+              <Route path=":id" element={<Dashboard />} />
+              <Route index element={<OfficerPage />} />
+            </Route>
+            <Route path="imei" element={<IMEIPage />}>
+              <Route path="new" element={<Dashboard />} />
+              <Route path=":id" element={<Dashboard />} />
+              <Route index element={<Dashboard />} />
+            </Route>
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route element={<OfficerRoute />}>
+              <Route index element={<Dashboard />} />
+              <Route path="order" element={<OrderPage />}>
+                <Route path="new" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
+                <Route index element={<Dashboard />} />
+              </Route>
+              <Route path="category" element={<CategoryPage />}>
+                <Route path="new" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
+                <Route index element={<CategoryList />} />
+              </Route>
+              <Route path="product" element={<ProductPage />}>
+                <Route path="new" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
+                <Route index element={<Dashboard />} />
+              </Route>
+              <Route path="customer" element={<CustomerPage />}>
+                <Route path="new" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
+                <Route index element={<Dashboard />} />
+              </Route>
+              <Route path="review" element={<ReviewPage />}>
+                <Route path="new" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
+                <Route index element={<Dashboard />} />
+              </Route>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

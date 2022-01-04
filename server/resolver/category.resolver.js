@@ -5,6 +5,7 @@ exports.categoryResolvers = {
             return controller.getAll()
         },
         getCategory: (root, {id} )=>{
+            console.log(controller.get(id))
             return controller.get(id)
         }
     },

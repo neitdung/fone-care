@@ -4,7 +4,7 @@ exports.create = (data) => {
     return new Promise((resolve,reject)=>{
         var newDoc = new Order(data);
         newDoc.save((err,doc)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Create order failed"});
             else resolve(doc);
         })
     })
@@ -27,7 +27,7 @@ exports.update = async (data) => {
 exports.getAll = async () => {
     return new Promise((resolve,reject)=>{
         Order.find({}, (err,docs)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Get orders failed"});
             else resolve(docs);
         })
     })
@@ -36,7 +36,7 @@ exports.getAll = async () => {
 exports.get = async (id) => {
     return new Promise((resolve,reject)=>{
         Order.find({ _id: id}, (err,doc)=>{
-            if(err) reject(err);
+            if(err) reject({error:true, message:"Get order failed"});
             else resolve(doc);
         })
     })

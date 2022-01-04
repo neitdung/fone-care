@@ -17,6 +17,11 @@ const Category = {
       type: ObjectId, 
       ref: 'Category'
    },
+   slug: {
+      type: String,
+      required: true,
+      unique: true
+   },
    mainCate: {
       type: Boolean,
       default: false
