@@ -30,6 +30,7 @@ serverStart();
 app.get("/", (req, res) => {
   console.log("Apollo GraphQL Express server is ready");
 });
+app.use("/api/file/", require("./utils/file.route"));
 
 app.listen({ port: PORT }, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
