@@ -12,7 +12,7 @@ exports.create = (data) => {
     })
 }
 
-exports.update = async (data) => {
+exports.update = async (id, data) => {
     return new Promise((resolve,reject)=>{
 
     Category.findOneAndUpdate(

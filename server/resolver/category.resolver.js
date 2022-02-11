@@ -13,8 +13,8 @@ exports.categoryResolvers = {
         createCategory: (root, { input }) => {
             return controller.create(input)
         },
-        updateCategory: (root, { input }) => {
-            return controller.update(input)
+        updateCategory: (root, { id, input }) => {
+            return controller.update(id, input)
         },
     }
 };

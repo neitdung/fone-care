@@ -16,6 +16,9 @@ import OrderPage from "./page/order";
 import ProductPage from "./page/product";
 
 import CategoryList from "./component/category/list";
+import CategoryNew from "./component/category/new";
+import CategoryEdit from "./component/category/edit";
+
 
 import MainLayout from "./MainLayout";
 import {
@@ -72,8 +75,8 @@ function App() {
                 <Route index element={<Dashboard />} />
               </Route>
               <Route path="category" element={<CategoryPage />}>
-                <Route path="new" element={<Dashboard />} />
-                <Route path=":id" element={<Dashboard />} />
+                <Route path="new" element={<CategoryNew />} />
+                <Route path=":id" element={<CategoryEdit />} />
                 <Route index element={<CategoryList />} />
               </Route>
               <Route path="product" element={<ProductPage />}>

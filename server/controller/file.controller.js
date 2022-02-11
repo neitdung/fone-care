@@ -1,4 +1,6 @@
 const multer = require("multer");
+const mime = require("mime-types");
+const url = require("url");
 const DEST_ASSETS = "assets/images";
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -7,7 +9,11 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(
       null,
-      Date.now() + "-" + Math.round(Math.random() * 1e9)
+      Date.now() +
+        "-" +
+        Math.round(Math.random() * 1e9) +
+        "." +
+        mime.extension(file.mimetype)
     );
   },
 });
@@ -23,7 +29,9 @@ exports.uploadImage = (req, res) => {
         message: `Cannot upload files. Error is ${err}`,
       });
     } else {
-      res.status(200).json({ error: false, path: req.files });
+      res
+        .status(200)
+        .json({ error: false, path: req.files.image[0].filename });
     }
   });
 };

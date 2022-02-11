@@ -23,8 +23,7 @@ export const saveToken = (token) => {
 
 export const getRole = () => {
   const tokenString = localStorage.getItem("token");
-  const decoded = jwt_decode(tokenString);
-  return decoded?.role;
+  return tokenString ? jwt_decode(tokenString)?.role : "";
 };
 
 export const logout = () => {
