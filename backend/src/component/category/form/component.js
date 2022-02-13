@@ -12,10 +12,11 @@ import {
 import { PlusOutlined } from "@ant-design/icons";
 import { GET_CATEGORIES, UPDATE_CATEGORY,  } from "../../../query/category.query";
 import { useQuery, useMutation } from "@apollo/client";
+import {  useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-const FormInput = ({ data, onSubmit }) => {
+const FormInput = ({ data }) => {
 
   const [update] = useMutation(UPDATE_CATEGORY);
   const [create] = useMutation(CREATE_CATEGORY);
@@ -123,7 +124,13 @@ const FormInput = ({ data, onSubmit }) => {
       .validateFields()
       .then((values) => {
         values.parentCate = mainCate ? "" : values.parentCate;
-        onSubmit({ ...values, mainCate: mainCate });
+        if (data.empty) {
+          create({ ...values, mainCate: mainCate });
+        } else {
+          update(data.id, { ...values, mainCate: mainCate });
+        }
+        let navigate = useNavigate();
+        navigate("/category");
       })
       .catch((info) => {
         console.log("Validate Failed:", info);

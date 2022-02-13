@@ -31,7 +31,7 @@ exports.uploadImage = (req, res) => {
     } else {
       res
         .status(200)
-        .json({ error: false, path: req.files.image[0].filename });
+        .json({ error: false, path: req.files.map(item => item.filename)});
     }
   });
 };

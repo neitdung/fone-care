@@ -23,19 +23,15 @@ const Product = {
     type: Number,
     default: 0,
   },
-  discount_price: {
-    type: Number,
-    default: 0
-  },
-  descriptopn_short: {
-    type: String
-  },
   color: [ 
     {
       name: String,
       hexCode: String
     }
   ],
+  images: [{
+    type: String
+  }],
   inStock: {
     type: Boolean,
     default: true
@@ -55,39 +51,15 @@ const Product = {
     screen_size: {
         type: String
     },
-    hard_drive: {
-        type: String
-    },
-    screen_relolution: {
-        type: String
-    },
-    sound: {
-        type: String
-    },
-    wireless_connect: {
-        type: String
-    },
     pin: {
         type: String
     },
-    os: {
-        type: String
-    },
-    weight: {
-        type: String
-    },
-    material: {
-        type: String
-    },
-    image_url: {
-        type: String
-    }
   },
   category: {
     type: ObjectId,
     ref: 'Category'
   },
-  isDelete: {
+  isDeleted: {
       type: Boolean,
       default: false
   }
